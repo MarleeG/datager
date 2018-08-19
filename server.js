@@ -349,10 +349,3 @@ app.post("/articles/:id", function (req, res) {
 app.listen(PORT, function () {
     console.log("App running on port " + PORT + "!");
 });
-
-
-
-// if (window.location === '/scrape'){
-//     console.log("I'm home!");
-//     window.location.pathname = '/';
-//   }

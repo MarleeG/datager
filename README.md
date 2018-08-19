@@ -22,6 +22,8 @@ This web app allows users view and leave comments on the latest news articles. U
 
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
+* [Bootstrap](https://getbootstrap.com/)
+
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
 ## Deployed App
