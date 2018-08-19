@@ -1,13 +1,50 @@
-// Grab the articles as a json
-// $.get("/scraped-articles", data => {
-//   console.log("data on app.js: ", data)
-// });
+// if showing
+localStorage.setItem("toggleArticles", true);
+var isHiding = localStorage.getItem("toggleArticles");
 
-$( document ).ready(function() {
-  console.log( "ready on app.js" );
 
-  $("li#saved-articles-link").removeClass( "active" );
 
+// localStorage.setItem("toggleArticles", true);
+
+ if(isHiding === true){
+    localStorage.setItem("toggleArticles", false);
+    // $("#wrapper").toggle();
+    console.log(isHiding);
+    // localStorage.setItem("toggleArticles", true)
+
+  }
+
+
+$(document).ready(function () {
+  // If hiding
+  // $("#wrapper").toggle();
+  
+  // if (isHiding) {
+    
+  // }
+});
+
+// if (isHiding){
+// }
+
+$("#scrape-data").on("click", () => {
+   isHiding = false;
+    
+
+  if (isHiding === false) {
+  //  $("#wrapper").toggle();
+    // console.log(false);
+  }
+
+
+  console.log("scrape button clicked!");
+
+  // If hiding
+  // if (toggledArticles === false) {
+  // 
+
+
+  // window.location.replace('/');
 });
 
 $.getJSON("/articles", function (data) {
@@ -20,58 +57,57 @@ $.getJSON("/articles", function (data) {
 });
 
 
-$("#scrape-data").on("click", () => {
-  console.log("scrape button clicked!");
-});
+
 
 
 $(document).on("click", "p", function () {
-    // Empty the notes from the note section
-    $("#notes").empty();
-    // Save the id from the p tag
-    var thisId = $(this).attr("data-id");
+  // Empty the notes from the note section
+  $("#notes").empty();
+  // Save the id from the p tag
+  var thisId = $(this).attr("data-id");
 
-    // Now make an ajax call for the Article
-    $.ajax({
-      method: "GET",
-      url: "/articles/" + thisId
-    })
-      // With that done, add the note information to the page
-      .then(function (data) {
-        console.log(data);
-        // The title of the article
-        $("#notes").append("<h2>" + data.title + "</h2>");
-        // An input to enter a new title
-        $("#notes").append("<input id='titleinput' name='title' >");
-        // A textarea to add a new note body
-        $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
-        // A button to submit a new note, with the id of the article saved to it
-        $("#notes").append(`<button type="button" class="btn btn-outline-dark btn-sm" data-id=${data._id} id='savenote'>Save Note</button>`);
-        $("#notes").append(`<button type="button" class="btn btn-outline-info btn-sm ml-3" data-id=${data._id} id='savearticle'>Save Article</button>`)
+  // Now make an ajax call for the Article
+  $.ajax({
+    method: "GET",
+    url: "/articles/" + thisId
+  })
+    // With that done, add the note information to the page
+    .then(function (data) {
+      console.log(data);
+      // The title of the article
+      $("#notes").append("<h2>" + data.title + "</h2>");
+      // An input to enter a new title
+      $("#notes").append("<input id='titleinput' name='title' >");
+      // A textarea to add a new note body
+      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+      // A button to submit a new note, with the id of the article saved to it
+      $("#notes").append(`<button type="button" class="btn btn-outline-dark btn-sm" data-id=${data._id} id='savenote'>Save Note</button>`);
+      $("#notes").append(`<button type="button" class="btn btn-outline-info btn-sm ml-3" data-id=${data._id} id='savearticle'>Save Article</button>`)
 
-        // If there's a note in the article
-        if (data.note) {
-          // Place the title of the note in the title input
-          $("#titleinput").val(data.note.title);
-          // Place the body of the note in the body textarea
-          $("#bodyinput").val(data.note.body);
-        }
-      });
-  });
+      // If there's a note in the article
+      if (data.note) {
+        // Place the title of the note in the title input
+        $("#titleinput").val(data.note.title);
+        // Place the body of the note in the body textarea
+        $("#bodyinput").val(data.note.body);
+      }
+    });
+});
 
 
 var myNotesId = [];
 // When you click the savenote button
 $(document).on("click", "#savenote", function () {
   // Grab the id associated with the article from the submit button
+  // $('#myModal').modal('toggle');
   var thisId = $(this).attr("data-id");
 
   // var notesId = $(this).attr("data-id");
 
-    console.log("My notes Id: ", thisId);
+  console.log("My notes Id: ", thisId);
 
-    myNotesId.push(thisId);
-    localStorage.setItem("notesID", myNotesId);
+  myNotesId.push(thisId);
+  localStorage.setItem("notesID", myNotesId);
 
 
   // Run a POST request to change the note, using what's entered in the inputs
@@ -99,22 +135,18 @@ $(document).on("click", "#savenote", function () {
 });
 
 
-
 var savedArticleArray = [];
-
-$(document).on("click", "#savearticle", ()=> {
+$(document).on("click", "#savearticle", () => {
   // local storage
   var savedarticle = $("#savearticle").attr('data-id');
   savedArticleArray.push(savedarticle);
   localStorage.setItem("savearticleid", savedArticleArray);
 
-  var thisId = $(this).attr("data-id");
-
 
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
-    url: "/saved-articles/" + thisId,
+    url: "/saved-articles/" + savedarticle,
     data: {
       // Value taken from title input
       title: $("#titleinput").val(),
@@ -128,7 +160,10 @@ $(document).on("click", "#savearticle", ()=> {
       console.log(data);
       // Empty the notes section
       $("#notes").empty();
+
     });
 
-  // console.log(savedarticle);
 });
+
+
+// localStorage.setItem("toggleArticles", isHiding);

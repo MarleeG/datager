@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#" style="font-size: 30px;">Datager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <!-- old classes: nav-item active -->
+            <li class="nav-item" id="home-link">
+                <!-- nav-link -->
+                <a class="nav-link" href="/">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item" id="home-link">
+                <a class="nav-link" href="/saved-articles">Saved Articles
+                </a>
+            </li>
+
+            <li class="nav-item active" id="saved-notes-link">
+                <a class="nav-link" href="/notes">Notes</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<!-- Newspaper -->
+<div class="d-flex justify-content-center mt-5 box-newspaper">
+    <img src="/assets/images/newspaper.jpg" alt="newspaper" id="newspaper">
+</div>
+
+<div class="container-fluid mx-auto">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrap">
+                {{#each notes}}
+                <div class="jumbotron jumbotron-fluid ">
+                    <div class="container">
+                        <h1 class="display-4 title-value" title-value={{this.title}} index={{@index}}>{{this.title}}</h1>
+                        <p class="lead body-value" body-value={{this.body}} index={{@index}}>{{this.body}}</p>
+                    </div>
+                    <button type="button" class="btn btn-outline-danger ml-3 delete-button" id="delete-note" data-id={{this.id}} index={{@index}}>Delete</button>
+                </div>
+                {{/each}}
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="/assets/js/saved-notes.js"></script>

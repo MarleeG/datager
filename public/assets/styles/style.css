@@ -57,7 +57,19 @@ textarea {
 
 }
 
+.wrap{
+    width: 980px;
+    margin-left: 135px;
+}
+
 #scraped-data:hover{
     background-color: #292B3F  ;
     color: white;
+}
+
+
+/* scraped */
+#datager{
+    border-radius: 10px;
+    
 }
