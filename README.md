@@ -3,7 +3,7 @@
 This web app allows users view and leave comments on the latest news articles. Users are able to leave notes as well as saving the articles if needed to reference at a later time. On the home page the user will be able to scrape data when they click on `SCRAPE NEW ARTICLES` to view the scraped articles. They can also navigate to their saved articles as well as viewing their notes they saved. 
 
 
-## Technologies Utilized
+## Built With
 * [express](https://expressjs.com/)
 
 * [express-handlebars](https://www.npmjs.com/package/express-handlebars)
