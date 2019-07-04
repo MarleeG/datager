@@ -37,8 +37,6 @@ app.set("view engine", "handlebars");
 // Require all my models
 var db = require("./models");
 
-// console.log(db.Saved);
-
 // Connect to the Mongo DB
 // mongoose.connect("mongodb://localhost/datager");
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/datager";
