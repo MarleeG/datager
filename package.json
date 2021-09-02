@@ -25,7 +25,7 @@
     "lodash": "^4.17.19",
     "lodash.template": "^4.5.0",
     "mongoose": "^5.6.3",
-    "mpath": "^0.5.1",
+    "mpath": "^0.8.4",
     "request": "^2.88.0"
   }
 }
